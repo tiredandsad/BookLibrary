@@ -1,17 +1,27 @@
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SignIn from './pages/SignIn';
 import Register from './pages/Register';
+import Main from './pages/Main';
 
 export default function App() {
+  const [page, setPage] = useState('signIn')
+  const [signedIn, setSignedIn] = useState('true') //Set manually until user auth is implemented
+
+  useEffect(() => {
+    if(signedIn){
+      setPage('main');
+    }
+  }), [signedIn]
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Library</Text>
       </View>
       <View style={styles.body}>
-        {/* <Text style={styles.text}>text</Text> */}
-      {/* <SignIn/> */}
-      <Register/>
+        {(page === 'signIn') && <SignIn setPage={setPage}/>}
+        {(page === 'register') && <Register setPage={setPage}/>}
+        {(page === 'main') && <Main setPage={setPage}/>}
       </View>
     </View>
   );

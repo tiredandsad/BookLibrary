@@ -1,18 +1,21 @@
 import React, {useState} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 
-export default function Register() {
+export default function Register(props) {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
+    const handleBackButton = () => {
+        props.setPage('signIn');
+    }
 
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}>
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity style={styles.backButton} onPress={handleBackButton}>
                 <Text style={styles.buttonText}>Back</Text>
             </TouchableOpacity>
             <ScrollView contentContainerStyle={styles.scrollViewContainer}>

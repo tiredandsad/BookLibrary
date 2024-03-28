@@ -1,19 +1,22 @@
 import React, {useState} from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 
-export default function SignIn() {
+export default function SignIn(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const openRegisterPage = () => {
+        props.setPage('register');
+    }
 
 
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}>
-            <TouchableOpacity style={styles.backButton}>
+            {/* <TouchableOpacity style={styles.backButton} onPress={props.setPage('')}>
                 <Text style={styles.buttonText}>Back</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <ScrollView contentContainerStyle={styles.scrollViewContainer}>
                 <View style={styles.innerContainer}>
                     <Text style={styles.headerText}>SIGN IN</Text>
@@ -24,7 +27,7 @@ export default function SignIn() {
                     <TouchableOpacity style={styles.loginButton}>
                         <Text style={styles.buttonText}>SIGN IN</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity><Text style={styles.registerButton}>REGISTER</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={openRegisterPage}><Text style={styles.registerButton}>REGISTER</Text></TouchableOpacity>
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
@@ -94,6 +97,8 @@ const styles = StyleSheet.create({
         color: '#f6e5ff'
     },
     registerButton: {
-        color: '#f6e5ff'
+        color: '#f6e5ff',
+        fontSize: 18,
+        padding: 10
     }
 })
