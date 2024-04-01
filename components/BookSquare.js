@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
         flex: 1,
         borderColor: '#fff',
         borderWidth: 1,
-        borderRadius: 5
+        borderRadius: 15
     }
 })
